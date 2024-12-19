@@ -255,4 +255,7 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   done
 fi
 
-open "%output_path%"
+echo 'Updated project at "%output_path%"'
+
+PATH=$("%output_path%")
+open $PATH
