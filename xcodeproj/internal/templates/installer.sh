@@ -256,6 +256,7 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
 fi
 
 echo 'Updated project at "%output_path%"'
+echo 'Updated project at "%root_workspace%"'
 pwd
 ls
 PATH=$("%output_path%")
