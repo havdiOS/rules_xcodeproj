@@ -259,4 +259,4 @@ echo 'Updated project at "%output_path%"'
 pwd
 ls
 PATH=$("%output_path%")
-open $PATH
+open "$root_workspace/$PATH"
