@@ -1,6 +1,6 @@
 bazel_dep(
     name = "apple_support",
-    version = "1.8.1",
+    version = "1.18.0",
     repo_name = "build_bazel_apple_support",
 )
 bazel_dep(
