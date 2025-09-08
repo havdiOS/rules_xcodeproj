@@ -65,6 +65,7 @@ final class GeneratorTests: XCTestCase {
             schemeAutogenerationMode: .auto,
             customXcodeSchemes: [],
             targetIdsFile: "/tmp/target_ids",
+            legacyIndexImport: "/tmp/legacy-index-import",
             indexImport: "/tmp/index-import",
             preBuildScript: "./pre-build.sh",
             postBuildScript: "./post-build.sh"
@@ -264,6 +265,7 @@ final class GeneratorTests: XCTestCase {
             let buildMode: BuildMode
             let project: Project
             let directories: Directories
+            let legacyIndexImport: String
             let indexImport: String
             let minimumXcodeVersion: SemanticVersion
         }
@@ -274,6 +276,7 @@ final class GeneratorTests: XCTestCase {
             _forFixtures _: Bool,
             project: Project,
             directories: Directories,
+            legacyIndexImport: String,
             indexImport: String,
             minimumXcodeVersion: SemanticVersion
         ) -> PBXProj {
@@ -281,6 +284,7 @@ final class GeneratorTests: XCTestCase {
                 buildMode: buildMode,
                 project: project,
                 directories: directories,
+                legacyIndexImport: legacyIndexImport,
                 indexImport: indexImport,
                 minimumXcodeVersion: minimumXcodeVersion
             ))
@@ -291,6 +295,7 @@ final class GeneratorTests: XCTestCase {
             buildMode: buildMode,
             project: project,
             directories: directories,
+            legacyIndexImport: project.legacyIndexImport,
             indexImport: project.indexImport,
             minimumXcodeVersion: project.minimumXcodeVersion
         )]

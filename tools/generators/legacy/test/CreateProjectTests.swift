@@ -90,6 +90,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "LD_OBJC_ABI_VERSION": "",
             "LD_DYLIB_INSTALL_NAME": "",
             "LD_RUNPATH_SEARCH_PATHS": "",
+            "LEGACY_INDEX_IMPORT": "/tmp/legacy-index-import",
             "ONLY_ACTIVE_ARCH": true,
             "PROJECT_DIR": """
 $(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
@@ -151,6 +152,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             forFixtures: false,
             project: project,
             directories: directories,
+            legacyIndexImport: project.legacyIndexImport,
             indexImport: project.indexImport,
             minimumXcodeVersion: project.minimumXcodeVersion
         )
@@ -225,6 +227,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
             "GCC_OPTIMIZATION_LEVEL": "0",
             "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
             "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
+            "LEGACY_INDEX_IMPORT": "/tmp/legacy-index-import",
             "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
             "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
@@ -316,6 +319,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             forFixtures: false,
             project: project,
             directories: directories,
+            legacyIndexImport: project.legacyIndexImport,
             indexImport: project.indexImport,
             minimumXcodeVersion: project.minimumXcodeVersion
         )

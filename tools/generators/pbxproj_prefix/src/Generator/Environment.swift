@@ -31,6 +31,7 @@ extension Generator {
 
         let pbxProjectBuildSettings: (
             _ buildMode: BuildMode,
+            _ legacyIndexImport: String,
             _ indexImport: String,
             _ indexingProjectDir: String,
             _ projectDir: String,

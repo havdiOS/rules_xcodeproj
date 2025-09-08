@@ -9,7 +9,8 @@ bazel_dep(name = "bazel_features", version = "1.0.0")
 bazel_dep(name = "bazel_skylib", version = "1.3.0")
 bazel_dep(
     name = "rules_swift",
-    version = "1.6.0",
+    version = "2.8.0",
+    max_compatibility_level = 2,
     repo_name = "build_bazel_rules_swift",
 )
 bazel_dep(
@@ -25,6 +26,7 @@ non_module_deps = use_extension("//xcodeproj:extensions.bzl", "non_module_deps")
 use_repo(
     non_module_deps,
     "rules_xcodeproj_index_import",
+    "rules_xcodeproj_legacy_index_import",
 )
 
 # Non-release dependencies
@@ -56,11 +58,6 @@ bazel_dep(
 single_version_override(
     module_name = "rules_apple",
     version = "2.5.0",
-)
-
-single_version_override(
-    module_name = "rules_swift",
-    version = "1.9.1",
 )
 
 # For Stardoc

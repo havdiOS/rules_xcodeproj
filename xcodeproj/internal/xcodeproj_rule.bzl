@@ -1140,6 +1140,7 @@ def _write_spec(
         extra_files,
         extra_folders,
         infos,
+        legacy_index_import,
         index_import,
         is_fixture,
         minimum_xcode_version,
@@ -1171,6 +1172,9 @@ def _write_spec(
         "R": runner_label,
         "T": "fixture-target-ids-file" if is_fixture else build_setting_path(
             file = target_ids_list,
+        ),
+        "i": "fixture-legacy-index-import-path" if is_fixture else build_setting_path(
+            file = legacy_index_import,
         ),
         "i": "fixture-index-import-path" if is_fixture else build_setting_path(
             file = index_import,
@@ -1348,6 +1352,7 @@ def _write_xcodeproj(
         execution_root_file,
         extensionpointidentifiers_file,
         generator,
+        legacy_index_import,
         index_import,
         install_path,
         is_fixture,
@@ -1382,7 +1387,10 @@ def _write_xcodeproj(
             extensionpointidentifiers_file,
         ],
         outputs = [xcodeproj],
-        tools = [index_import],
+        tools = [
+            legacy_index_import,
+            index_import,
+        ],
         execution_requirements = {
             # Projects can be rather large, and take almost no time to generate
             # This also works around any RBC tree artifact issues
@@ -1597,6 +1605,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         envs = envs,
         extra_files = extra_files,
         extra_folders = extra_folders,
+        legacy_index_import = ctx.executable._legacy_index_import,
         index_import = ctx.executable._index_import,
         infos = infos,
         is_fixture = is_fixture,
@@ -1738,6 +1747,7 @@ done
         execution_root_file = execution_root_file,
         extensionpointidentifiers_file = extensionpointidentifiers_file,
         generator = ctx.attr._generator[DefaultInfo].files_to_run,
+        legacy_index_import = ctx.attr._legacy_index_import[DefaultInfo].files_to_run,
         index_import = ctx.attr._index_import[DefaultInfo].files_to_run,
         install_path = install_path,
         is_fixture = is_fixture,
@@ -1763,6 +1773,7 @@ done
         input_files_output_groups = input_files.to_output_groups_fields(
             inputs = inputs,
             additional_bwx_generated = additional_bwx_generated,
+            legacy_index_import = ctx.executable._legacy_index_import,
             index_import = ctx.executable._index_import,
         )
         output_files_output_groups = {}
@@ -1776,6 +1787,7 @@ done
         output_files_output_groups = output_files.to_output_groups_fields(
             outputs = provider_outputs,
             additional_bwb_outputs = additional_bwb_outputs,
+            legacy_index_import = ctx.executable._legacy_index_import,
             index_import = ctx.executable._index_import,
         )
         all_targets_files = [output_files_output_groups["all_b"]]
@@ -1961,6 +1973,12 @@ def make_xcodeproj_rule(
             default = Label("//xcodeproj/internal/templates:installer.sh"),
         ),
         "_is_fixture": attr.bool(default = is_fixture),
+        # TODO: Remove 5.8 when support for Xcode 16.x is dropped.
+        "_legacy_index_import": attr.label(
+            cfg = "exec",
+            default = Label("@rules_xcodeproj_legacy_index_import//:index_import"),
+            executable = True,
+        ),
         "_link_params_processor": attr.label(
             cfg = "exec",
             default = Label("//tools/params_processors:link_params_processor"),

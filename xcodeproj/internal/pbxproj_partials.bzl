@@ -205,6 +205,7 @@ def _write_pbxproj_prefix(
         default_xcode_configuration,
         execution_root_file,
         generator_name,
+        legacy_index_import,
         index_import,
         install_path,
         minimum_xcode_version,
@@ -229,6 +230,8 @@ def _write_pbxproj_prefix(
         execution_root_file: A `File` containing the absolute path to the Bazel
             execution root.
         generator_name: The name of the `xcodeproj` generator target.
+        legacy_index_import: The executable `File` for the
+            `legacy_index_import` tool.
         index_import: The executable `File` for the `index_import` tool.
         install_path: The workspace relative path to where the final
             `.xcodeproj` will be written.
@@ -271,6 +274,9 @@ def _write_pbxproj_prefix(
 
     # targetIdsFile
     args.add(target_ids_list)
+
+    # legacyIndexImport
+    args.add(legacy_index_import)
 
     # indexImport
     args.add(index_import)
