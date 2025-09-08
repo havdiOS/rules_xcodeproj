@@ -7,10 +7,8 @@ extension Generator {
     ///
     /// - Parameters:
     ///   - buildMode: The `BuildMode`.
-    ///   - legacyIndexImport: The Bazel execution root relative path to the
-    ///     `index_import` (version 5.8) executable.
     ///   - indexImport: The Bazel execution root relative path to the
-    ///     `index_import` (version 6.1+) executable.
+    ///     `index_import` executable.
     ///   - indexingProjectDir: The value returned from
     ///     `Generator.indexingProjectDir()`.
     ///   - projectDir: The value returned from `Generator.projectDir()`.
@@ -19,7 +17,6 @@ extension Generator {
     ///   - workspace: The absolute path to the Bazel workspace.
     static func pbxProjectBuildSettings(
         buildMode: BuildMode,
-        legacyIndexImport: String,
         indexImport: String,
         indexingProjectDir: String,
         projectDir: String,
@@ -139,12 +136,6 @@ extension Generator {
             .init(key: "LD_DYLIB_INSTALL_NAME", value: #""""#),
             .init(key: "LD_OBJC_ABI_VERSION", value: #""""#),
             .init(key: "LD_RUNPATH_SEARCH_PATHS", value: #""""#),
-            .init(
-                key: "LEGACY_INDEX_IMPORT",
-                value: legacyIndexImport
-                    .executionRootBasedBuildSettingPath
-                    .pbxProjEscaped
-            ),
             .init(key: "ONLY_ACTIVE_ARCH", value: "YES"),
             .init(
                 key: "PROJECT_DIR",

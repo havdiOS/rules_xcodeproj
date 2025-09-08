@@ -42,7 +42,6 @@ enum Fixtures {
         schemeAutogenerationMode: .auto,
         customXcodeSchemes: [],
         targetIdsFile: "/tmp/target_ids",
-        legacyIndexImport: "/tmp/legacy-index-import",
         indexImport: "/tmp/index-import",
         preBuildScript: "./pre-build.sh",
         postBuildScript: "./post-build.sh"

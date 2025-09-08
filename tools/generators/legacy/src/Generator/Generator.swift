@@ -57,7 +57,6 @@ class Generator {
             forFixtures,
             project,
             directories,
-            project.legacyIndexImport,
             project.indexImport,
             project.minimumXcodeVersion
         )

@@ -12,7 +12,6 @@ extension Generator {
         forFixtures: Bool,
         project: Project,
         directories: Directories,
-        legacyIndexImport: String,
         indexImport: String,
         minimumXcodeVersion: SemanticVersion
     ) -> PBXProj {
@@ -132,7 +131,6 @@ $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
             // We don't want Xcode to set any search paths, since we set them in
             // `link.params`
             "LD_RUNPATH_SEARCH_PATHS": "",
-            "LEGACY_INDEX_IMPORT": legacyIndexImport,
             "ONLY_ACTIVE_ARCH": true,
             "PROJECT_DIR": """
 $(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))

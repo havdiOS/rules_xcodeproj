@@ -12,7 +12,6 @@ struct Environment {
         _ forFixtures: Bool,
         _ project: Project,
         _ directories: Directories,
-        _ legacyIndexImport: String,
         _ indexImport: String,
         _ minimumXcodeVersion: SemanticVersion
     ) -> PBXProj

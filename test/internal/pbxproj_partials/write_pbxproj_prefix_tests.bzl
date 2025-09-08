@@ -46,7 +46,6 @@ def _write_pbxproj_prefix_test_impl(ctx):
         generator_name = "a_generator_name",
         index_import = ctx.attr.index_import,
         install_path = "a/project.xcodeproj",
-        legacy_index_import = ctx.attr.legacy_index_import,
         minimum_xcode_version = ctx.attr.minimum_xcode_version,
         platforms = ctx.attr.platforms,
         post_build_script = ctx.attr.post_build_script,
@@ -139,7 +138,6 @@ write_pbxproj_prefix_test = unittest.make(
         "expected_args": attr.string_list(mandatory = True),
         "expected_writes": attr.string_dict(mandatory = True),
         "index_import": attr.string(mandatory = True),
-        "legacy_index_import": attr.string(mandatory = True),
         "minimum_xcode_version": attr.string(mandatory = True),
         "platforms": attr.string_list(mandatory = True),
         "post_build_script": attr.string(),
@@ -171,7 +169,6 @@ def write_pbxproj_prefix_test_suite(name):
             default_xcode_configuration,
             execution_root_file,
             index_import,
-            legacy_index_import,
             minimum_xcode_version,
             platforms,
             post_build_script = None,
@@ -195,7 +192,6 @@ def write_pbxproj_prefix_test_suite(name):
             default_xcode_configuration = default_xcode_configuration,
             execution_root_file = execution_root_file,
             index_import = index_import,
-            legacy_index_import = legacy_index_import,
             minimum_xcode_version = minimum_xcode_version,
             platforms = platforms,
             post_build_script = post_build_script,
@@ -221,7 +217,6 @@ def write_pbxproj_prefix_test_suite(name):
         default_xcode_configuration = "Debug",
         execution_root_file = "an/execution/root/file",
         index_import = "some/path/to/index_import",
-        legacy_index_import = "some/path/to/legacy/index_import",
         minimum_xcode_version = "14.2.1",
         platforms = [
             "MACOS",
@@ -248,8 +243,6 @@ def write_pbxproj_prefix_test_suite(name):
             "an/execution/root/file",
             # targetIdsFile
             "a/path/to/target_ids_list",
-            # legacyIndexImport
-            "some/path/to/legacy/index_import",
             # indexImport
             "some/path/to/index_import",
             # resolvedRepositoriesFile
@@ -284,7 +277,6 @@ def write_pbxproj_prefix_test_suite(name):
         default_xcode_configuration = "Release",
         execution_root_file = "an/execution/root/file",
         index_import = "some/path/to/index_import",
-        legacy_index_import = "some/path/to/legacy/index_import",
         platforms = [
             "MACOS",
             "IOS_DEVICE",
@@ -314,8 +306,6 @@ def write_pbxproj_prefix_test_suite(name):
             "an/execution/root/file",
             # targetIdsFile
             "a/path/to/target_ids_list",
-            # legacyIndexImport
-            "some/path/to/legacy/index_import",
             # indexImport
             "some/path/to/index_import",
             # resolvedRepositoriesFile
